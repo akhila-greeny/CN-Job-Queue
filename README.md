@@ -8,14 +8,14 @@ A secure, multi-client distributed job queue implemented with **raw TCP sockets*
 
 ```
   ┌──────────┐         TLS/TCP          ┌─────────────────────────────────┐
-  │  Client  │ ──── JSON job ────────► │                                 │
-  │ (client) │ ◄─── JOB_RECEIVED ───── │           SERVER                │
-  └──────────┘                         │  • Accepts clients & workers     │
-                                        │  • Maintains job queue           │
-  ┌──────────┐         TLS/TCP          │  • Tracks in-progress jobs       │
-  │  Worker  │ ──── WORKER ──────────► │  • Re-queues on worker crash     │
-  │ (worker) │ ◄─── READY ───────────  │  • Reports stats every 10s       │
-  │          │ ──── GET_JOB ─────────► │                                 │
+  │  Client  │ ──── JSON job ────────►  │                                 │
+  │ (client) │ ◄─── JOB_RECEIVED ─────  │           SERVER                │
+  └──────────┘                          │  • Accepts clients & workers    │
+                                        │  • Maintains job queue          │
+  ┌──────────┐         TLS/TCP          │  • Tracks in-progress jobs      │
+  │  Worker  │ ──── WORKER ──────────►  │  • Re-queues on worker crash    │
+  │ (worker) │ ◄─── READY ───────────   │  • Reports stats every 10s      │
+  │          │ ──── GET_JOB ─────────►  │                                 │
   │          │ ◄─── JSON job ─────────  └─────────────────────────────────┘
   │          │ ──── DONE/FAILED ─────►
   └──────────┘
