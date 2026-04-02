@@ -5,6 +5,7 @@ A secure, multi-client distributed job queue implemented with **raw TCP sockets*
 ---
 
 ## Architecture
+<img width="1024" height="477" alt="image" src="https://github.com/user-attachments/assets/0a4d1360-7797-4f34-bef2-c8df92370c32" />
 
 ```
   ┌──────────┐         TLS/TCP          ┌─────────────────────────────────┐
