@@ -7,21 +7,6 @@ A secure, multi-client distributed job queue implemented with **raw TCP sockets*
 ## Architecture
 <img width="1024" height="477" alt="image" src="https://github.com/user-attachments/assets/0a4d1360-7797-4f34-bef2-c8df92370c32" />
 
-```
-  ┌──────────┐         TLS/TCP          ┌─────────────────────────────────┐
-  │  Client  │ ──── JSON job ────────►  │                                 │
-  │ (client) │ ◄─── JOB_RECEIVED ─────  │           SERVER                │
-  └──────────┘                          │  • Accepts clients & workers    │
-                                        │  • Maintains job queue          │
-  ┌──────────┐         TLS/TCP          │  • Tracks in-progress jobs      │
-  │  Worker  │ ──── WORKER ──────────►  │  • Re-queues on worker crash    │
-  │ (worker) │ ◄─── READY ───────────   │  • Reports stats every 10s      │
-  │          │ ──── GET_JOB ─────────►  │                                 │
-  │          │ ◄─── JSON job ─────────  └─────────────────────────────────┘
-  │          │ ──── DONE/FAILED ─────►
-  └──────────┘
-```
-
 ### Communication Protocol
 
 | Step | Direction | Message |
